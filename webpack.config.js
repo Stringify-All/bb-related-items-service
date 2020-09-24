@@ -1,10 +1,11 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+var path = require('path');
+var SRC_DIR = path.join(__dirname, '/client/src');
+var DIST_DIR = path.join(__dirname, '/client/dist');
 module.exports = {
-  entry: './client/src/index.js',
+  entry: `${SRC_DIR}/index.jsx`,
   output: {
-    path: path.join(__dirname, './client/dist'),
     filename: 'index_bundle.js',
+    path: DIST_DIR
   },
   module: {
     rules: [
@@ -12,14 +13,9 @@ module.exports = {
         test: /\.jsx?/,
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
-        },
-      },
-    ],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './client/src/index.html',
-    }),
-  ],
+          'presets': ['@babel/preset-env', '@babel/preset-react']
+        }
+      }
+    ]
+  }
 };

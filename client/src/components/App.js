@@ -11,9 +11,11 @@ class RelatedItems extends Component {
       <>
         <GlobalStyle />
         <body>
-          <h1> DANGAHZOOONNNEEEE. </h1>
+          <h1> DANGAHZOOONNNEEEE. fluff </h1>
           <p> Long Live the Scrumdog Millionaires </p>
           <button> Button Large </button>
+          <button>the fluff button</button>
+          <button>dangerous button</button>
         </body>
       </>
     )
