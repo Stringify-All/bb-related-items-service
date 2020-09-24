@@ -9,15 +9,14 @@ Use the package manager [npm](https://www.npmjs.com/package/npm-install) to inst
 npm install
 ```
 
-## starting scripts: Run scripts in order to start the component
+## To start the application
 
 ```javascript
-  "scripts": {
-    "build": "webpack -d --watch",
-    "start": "node server/index.js",
-    "start:server": "nodemon server/index.js -w server -w",
-    "test": "jest"
-  },
+
+1. Run npm install
+2. Run npm run-script build
+3. Run npm run start:server
+4. Navigate to localhost:9000
 ```
 
 
