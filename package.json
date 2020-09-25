@@ -1,12 +1,11 @@
 {
-  "name": "kg-product-detail-page",
+  "name": "bb-related-items-service",
   "version": "1.0.0",
-  "description": "Product detail service component for Thr3ds. ",
+  "description": "Related items service component for Thr3ds. ",
   "main": "index.js",
   "jest": {
     "verbose": true
   },
-
   "scripts": {
     "build": "webpack -d --watch",
     "start": "node server/index.js",
@@ -28,14 +27,17 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.10.4",
     "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
     "axios": "^0.20.0",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.2",
     "concurrently": "^5.3.0",
     "express": "^4.17.1",
     "mongodb": "^3.6.2",
     "mysql": "^2.18.1",
     "react": "^16.13.1",
+    "react-bootstrap": "^1.3.0",
     "react-dom": "^16.13.1",
     "reactstrap": "^8.6.0",
     "styled-components": "^5.2.0"
@@ -46,6 +48,7 @@
     "babel-loader": "^8.1.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "css-loader": "^4.3.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "eslint": "^7.9.0",
@@ -54,9 +57,12 @@
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.21.1",
     "eslint-plugin-react-hooks": "^4.1.2",
+    "file-loader": "^6.1.0",
     "html-webpack-plugin": "^4.5.0",
     "jest": "^26.4.2",
     "react-test-renderer": "^16.13.1",
+    "style-loader": "^1.2.1",
+    "url-loader": "^4.1.0",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"

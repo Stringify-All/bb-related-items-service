@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
-// @//import styled, { injectGlobal } from 'styled-components';
-// import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap')
+// @import styled, { injectGlobal } from 'styled-components';
+// import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap')
 // @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
 
 // main page elements
@@ -44,6 +44,11 @@ const GlobalStyle = createGlobalStyle`
     box-shadow: 0 1px 0 #5eaaa8;
     transition-timing-function: ease-in;
     transition: .3s;
+  }
+
+  .container {
+    display: inline; /* or inline-flex */;
+    dlex-direction: row;
   }
 `;
 
