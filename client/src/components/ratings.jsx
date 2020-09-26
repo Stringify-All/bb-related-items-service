@@ -5,7 +5,8 @@ This function should be called in cards table, and should send in an id as props
 This function will take that ID number and send a get request to http://52.26.193.201:3000/reviews/ --ID--/meta, a
 */
 
-function Ratings() {
+function Ratings(props) {
+  console.log(props.id)
   const [ratings, setRatings] = useState(
     {
       product_id: '2',
@@ -30,21 +31,26 @@ function Ratings() {
     },
   );
 
-  useEffect(() => {
-    axios.get('http://52.26.193.201:3000/reviews/2/meta')
-      .then((results) => {
-        setRatings(results);
-      });
-  });
-
-  const getAverage = () => {
-    const reviewsObj = ratings.ratings;
-    for (const key in reviewsObj) {
-
+  const getAverage = (obj) => {
+    const keys = Object.keys(obj);
+    const values = Object.values(obj);
+    const reducer = (a, b) => a + b;
+    const valSum = values.reduce(reducer);
+    let total = 0;
+    for (let i = 0; i < keys.length; i += 1) {
+      total += Number(keys[i]) * values[i];
     }
+    return Math.round(total / valSum);
   };
+  useEffect(() => {
+    axios.get(`http://52.26.193.201:3000/reviews/2/meta`)
+      .then((results) => {
+        setRatings(results.data);
+      });
+  }, []);
+  // getAverage is designed to take in the ratings object returned from the above API call
   return (
-    <p>{getAverage()}</p>
+    <p>{getAverage(ratings.ratings)}</p>
   );
 }
 

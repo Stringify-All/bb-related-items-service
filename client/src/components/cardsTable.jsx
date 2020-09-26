@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 function CardsTable(props) {
   const classes = useStyles();
   const tileData = props.products;
-  console.log('here is the props B: ', props.products);
 
   return (
     <div className={classes.root}>
@@ -46,7 +45,7 @@ function CardsTable(props) {
               $
               {tile.default_price}
             </p>
-            <Ratings />
+            <Ratings id={tile.id} />
           </GridListTile>
         ))}
       </GridList>
