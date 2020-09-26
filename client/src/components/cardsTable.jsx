@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
-// import RelatedItems from './App.jsx';
+import Ratings from './ratings.jsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +33,7 @@ function CardsTable(props) {
       <GridList className={classes.gridList} cellHeight={160} cols={3}>
         {tileData.map((tile) => (
           <GridListTile>
-            <img src={tile.img} alt="Whoopsie!" />
+            <img src={tile.img} alt={`Product: ${tile.name}`} />
             <GridListTileBar
               title={tile.name}
               classes={{
@@ -41,6 +41,12 @@ function CardsTable(props) {
                 title: classes.title,
               }}
             />
+            <p>{tile.category}</p>
+            <p>
+              $
+              {tile.default_price}
+            </p>
+            <Ratings />
           </GridListTile>
         ))}
       </GridList>

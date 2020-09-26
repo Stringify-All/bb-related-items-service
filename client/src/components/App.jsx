@@ -1,5 +1,6 @@
 /* eslint-disable import/extensions */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import GlobalStyle from './globalStyle.js';
 import CardsTable from './cardsTable.jsx';
 
@@ -28,32 +29,15 @@ function RelatedItems() {
       description: 'another thing',
       category: 'misc.',
       default_price: '50',
-    },
-    {
-      id: 4,
-      img: 'https://www.historyforsale.com/productimages/jpeg/323109.jpg',
-      name: 'placeholder2',
-      description: 'another thing',
-      category: 'misc.',
-      default_price: '50',
-    },
-    {
-      id: 5,
-      img: 'https://www.historyforsale.com/productimages/jpeg/205295.jpg',
-      name: 'placeholder2',
-      description: 'another thing',
-      category: 'misc.',
-      default_price: '50',
-    },
-    {
-      id: 6,
-      img: 'https://c8.alamy.com/comp/2AK24X9/kenny-loggins-1994-photo-by-michael-fergusonphotolink-2AK24X9.jpg',
-      name: 'placeholder2',
-      description: 'another thing',
-      category: 'misc.',
-      default_price: '50',
     }],
   );
+
+  useEffect(() => {
+    axios.get('http://52.26.193.201:3000/products/list')
+      .then((results) => {
+        setProductInfo(results.data);
+      });
+  }, []);
 
   return (
     <>
