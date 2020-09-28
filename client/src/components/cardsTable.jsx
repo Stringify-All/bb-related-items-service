@@ -30,7 +30,7 @@ function CardsTable(props) {
   return (
     <div className={classes.root}>
       <GridList className={classes.gridList} cellHeight={160} cols={3}>
-        {tileData.map((tile) => (
+        {tileData.map((tile, index) => (
           <GridListTile>
             <img src={tile.img} alt={`Product: ${tile.name}`} />
             <GridListTileBar

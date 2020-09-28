@@ -6,32 +6,23 @@ This function will take that ID number and send a get request to http://52.26.19
 */
 
 function Ratings(props) {
-  console.log(props.id)
-  const [ratings, setRatings] = useState(
-    {
-      product_id: '2',
-      ratings: {
-        1: 5,
-        2: 5,
-        3: 5,
-        4: 5,
-        5: 5,
-      },
-      recommended: {
-        0: 13,
-        1: 23,
-        null: 1,
-      },
-      characteristics: {
-        Quality: {
-          id: 5,
-          value: '4.1000',
-        },
-      },
-    },
-  );
+  const [ratings, setRatings] = useState({});
+
+  // getAverage is designed to take in the ratings object returned from the above API call
+  /*
+
+do conditional render here
+*/
+  useEffect(() => {
+    axios.get(`http://52.26.193.201:3000/reviews/${props.id}/meta`)
+      .then((results) => {
+        console.log('ratings being returned from the API: ', results.data, 'corresponding ID: ', props.id);
+        setRatings(results.data);
+      });
+  }, []);
 
   const getAverage = (obj) => {
+    console.log('object in the getAvg funciton: ', obj);
     const keys = Object.keys(obj);
     const values = Object.values(obj);
     const reducer = (a, b) => a + b;
@@ -42,15 +33,13 @@ function Ratings(props) {
     }
     return Math.round(total / valSum);
   };
-  useEffect(() => {
-    axios.get(`http://52.26.193.201:3000/reviews/2/meta`)
-      .then((results) => {
-        setRatings(results.data);
-      });
-  }, []);
-  // getAverage is designed to take in the ratings object returned from the above API call
+  if (ratings.ratings !== undefined && Object.keys(ratings.ratings).length > 0) {
+    return (
+      <p>{getAverage(ratings.ratings)}</p>
+    );
+  }
   return (
-    <p>{getAverage(ratings.ratings)}</p>
+    <div>No ratings available</div>
   );
 }
 
