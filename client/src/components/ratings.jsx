@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import Rating from '@material-ui/lab/Rating';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import axios from 'axios';
 /*
 This function should be called in cards table, and should send in an id as props.
@@ -9,20 +12,15 @@ function Ratings(props) {
   const [ratings, setRatings] = useState({});
 
   // getAverage is designed to take in the ratings object returned from the above API call
-  /*
 
-do conditional render here
-*/
   useEffect(() => {
     axios.get(`http://52.26.193.201:3000/reviews/${props.id}/meta`)
       .then((results) => {
-        console.log('ratings being returned from the API: ', results.data, 'corresponding ID: ', props.id);
         setRatings(results.data);
       });
   }, []);
 
   const getAverage = (obj) => {
-    console.log('object in the getAvg funciton: ', obj);
     const keys = Object.keys(obj);
     const values = Object.values(obj);
     const reducer = (a, b) => a + b;
@@ -33,9 +31,18 @@ do conditional render here
     }
     return Math.round(total / valSum);
   };
+
   if (ratings.ratings !== undefined && Object.keys(ratings.ratings).length > 0) {
     return (
-      <p>{getAverage(ratings.ratings)}</p>
+      <div>
+        <Box component="fieldset" mb={2} borderColor="transparent">
+          <Typography component="legend">Controlled</Typography>
+          <Rating
+            name="simple-controlled"
+            value={getAverage(ratings.ratings)}
+          />
+        </Box>
+      </div>
     );
   }
   return (
@@ -44,3 +51,17 @@ do conditional render here
 }
 
 export default Ratings;
+
+/*
+
+<Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend">Controlled</Typography>
+        <Rating
+          name="simple-controlled"
+          value={value}
+          onChange={(event, newValue) => {
+            setValue(newValue);
+          }}
+        />
+      </Box>
+*/
