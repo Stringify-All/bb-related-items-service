@@ -36,17 +36,21 @@ function Ratings(props) {
     return (
       <div>
         <Box component="fieldset" mb={2} borderColor="transparent">
-          <Typography component="legend">Controlled</Typography>
           <Rating
-            name="simple-controlled"
+            name="read-only"
             value={getAverage(ratings.ratings)}
+            readOnly
           />
         </Box>
       </div>
     );
   }
   return (
-    <div>No ratings available</div>
+    <div>
+      <Box component="fieldset" mb={2} borderColor="transparent">
+        <Typography>No Ratings data</Typography>
+      </Box>
+    </div>
   );
 }
 
