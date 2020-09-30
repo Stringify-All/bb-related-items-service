@@ -1,11 +1,16 @@
-import React from 'react';
+/* eslint-disable import/extensions */
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
+import axios from 'axios';
 import Ratings from './ratings.jsx';
+import SimpleModal from './modal.jsx';
+import GetPhotos from './getPhotos.jsx';
+import GetRelatedProductDetails from './api_requests/getRelatedProductDetails.jsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,38 +32,80 @@ const useStyles = makeStyles((theme) => ({
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
+  modalButton: {
+    background: 'none !important',
+    border: 'none',
+    padding: '0!important',
+    color: theme.palette.primary.light,
+    fontSize: '100',
+  },
 }));
 
-function CardsTable(props) {
+const CardsTable = (props) => {
   const classes = useStyles();
-  const tileData = props.products;
+  const [modalIsOpen, setModal] = useState(false);
 
+  console.log('here is the state being passed in: ', props.relatedProducts);
+  const CardRender = function () {
+    return (
+      <>
+        <div className={classes.root}>
+          <GridList className={classes.gridList} cellHeight={200} cols={3}>
+            {props.relatedProducts.map((tile) => (
+              <GridListTile>
+                <img
+                  src={null}
+                  alt={`Img for: ${tile.name}`}
+                />
+                <GridListTileBar
+                  title={(
+                    <Ratings id={tile.id} />
+             )}
+                  subtitle={(
+                    <button
+                      type="submit"
+                      className={classes.modalButton}
+                      onClick={() => {
+                        if (modalIsOpen === false) {
+                          setModal(true);
+                        } else {
+                          setModal(false);
+                        }
+                      }}
+                    >
+                      {tile.name}
+                      {' '}
+                      {tile.category}
+                      {' '}
+                      $
+                      {tile.default_price}
+                      {' '}
+                    </button>
+             )}
+                  classes={{
+                    root: classes.titleBar,
+                    title: classes.title,
+                  }}
+                  actionIcon={(
+                    <IconButton aria-label={`star ${tile.title}`}>
+                      <StarBorderIcon className={classes.title} />
+                    </IconButton>
+             )}
+                />
+              </GridListTile>
+            ))}
+          </GridList>
+        </div>
+      </>
+    );
+  };
+
+  if (props.relatedProducts !== []) {
+    return CardRender();
+  }
   return (
-    <div className={classes.root}>
-      <GridList className={classes.gridList} cellHeight={200} cols={3}>
-        {tileData.map((tile, index) => (
-          <GridListTile>
-            <img src={tile.img} alt={`Img for: ${tile.name}`} />
-            <GridListTileBar
-              title={(
-                <Ratings id={tile.id} />
-              )}
-              subtitle={`${tile.name} ${tile.category} \n $${tile.default_price} `}
-              classes={{
-                root: classes.titleBar,
-                title: classes.title,
-              }}
-              actionIcon={(
-                <IconButton aria-label={`star ${tile.title}`}>
-                  <StarBorderIcon className={classes.title} />
-                </IconButton>
-              )}
-            />
-          </GridListTile>
-        ))}
-      </GridList>
-    </div>
+    <div>loading</div>
   );
-}
+};
 
 export default CardsTable;

@@ -3,39 +3,29 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GlobalStyle from './globalStyle.js';
 import CardsTable from './cardsTable.jsx';
+import GetProductList from './api_requests/productsList.jsx';
+import GetRelatedProducts from './api_requests/getRelatedProducts.jsx';
+import GetRelatedProductDetails from './api_requests/getRelatedProductDetails.jsx';
 
-function RelatedItems() {
+const RelatedItems = () => {
   const [count, setCount] = useState(0);
-  const [productInfo, setProductInfo] = useState(
-    [{
-      id: 1,
-      img: 'https://upload.wikimedia.org/wikipedia/en/archive/3/3c/20140214062925%21Kenny_Loggins.jpg',
-      name: 'placeholder1',
-      description: 'a thing',
-      category: 'misc.',
-      default_price: '50',
-    },
-    {
-      id: 2,
-      img: 'https://upload.wikimedia.org/wikipedia/en/7/77/Love_songs_of_Kenny_Loggins.jpg',
-      name: 'placeholder2',
-      description: 'another thing',
-      category: 'misc.',
-      default_price: '50',
-    }, {
-      id: 3,
-      img: 'https://e.snmc.io/i/600/w/e8d630ceb66510207e8a48eb112358f9/7473234',
-      name: 'placeholder2',
-      description: 'another thing',
-      category: 'misc.',
-      default_price: '50',
-    }],
-  );
+  const [productInfo, setProductInfo] = useState([]);
+  const [relatedProducts, setRelatedProducts] = useState([]);
+  const [relatedProductsInfo, setRelatedProductsInfo] = useState([]);
+
+  const currentId = 1;
 
   useEffect(() => {
-    axios.get('http://52.26.193.201:3000/products/list')
-      .then((results) => {
-        setProductInfo(results.data);
+    GetRelatedProducts(currentId)
+      .then((data) => {
+        setRelatedProducts(data);
+        return data;
+      })
+      .then((data) => {
+        const promiseArr = data.map((id) => GetRelatedProductDetails(id));
+        return Promise.all(promiseArr);
+      }).then((data) => {
+        setRelatedProductsInfo(data);
       });
   }, []);
 
@@ -49,10 +39,10 @@ function RelatedItems() {
           {`You clicked ${count} times.`}
         </p>
         <button onClick={() => setCount(count + 1)} type="submit">Dangerous Button</button>
-        <CardsTable products={productInfo} />
+        <CardsTable relatedProducts={relatedProductsInfo} setRelatedInfo={setRelatedProductsInfo} />
       </body>
     </>
   );
-}
+};
 
 export default RelatedItems;
