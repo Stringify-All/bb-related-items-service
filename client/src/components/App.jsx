@@ -6,14 +6,15 @@ import CardsTable from './cardsTable.jsx';
 import GetProductList from './api_requests/productsList.jsx';
 import GetRelatedProducts from './api_requests/getRelatedProducts.jsx';
 import GetRelatedProductDetails from './api_requests/getRelatedProductDetails.jsx';
+import GetPhotos from './api_requests/getPhotos.jsx';
 
 const RelatedItems = () => {
   const [count, setCount] = useState(0);
-  const [productInfo, setProductInfo] = useState([]);
+  // const [productInfo, setProductInfo] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [relatedProductsInfo, setRelatedProductsInfo] = useState([]);
 
-  const currentId = 1;
+  const currentId = 4;
 
   useEffect(() => {
     GetRelatedProducts(currentId)

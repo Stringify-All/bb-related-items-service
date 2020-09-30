@@ -1,16 +1,13 @@
 /* eslint-disable import/extensions */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
-import axios from 'axios';
 import Ratings from './ratings.jsx';
 import SimpleModal from './modal.jsx';
-import GetPhotos from './getPhotos.jsx';
-import GetRelatedProductDetails from './api_requests/getRelatedProductDetails.jsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,59 +43,57 @@ const CardsTable = (props) => {
   const [modalIsOpen, setModal] = useState(false);
 
   console.log('here is the state being passed in: ', props.relatedProducts);
-  const CardRender = function () {
-    return (
-      <>
-        <div className={classes.root}>
-          <GridList className={classes.gridList} cellHeight={200} cols={3}>
-            {props.relatedProducts.map((tile) => (
-              <GridListTile>
-                <img
-                  src={null}
-                  alt={`Img for: ${tile.name}`}
-                />
-                <GridListTileBar
-                  title={(
-                    <Ratings id={tile.id} />
+  const CardRender = () => (
+    <>
+      <div className={classes.root}>
+        <GridList className={classes.gridList} cellHeight={200} cols={3}>
+          {props.relatedProducts.map((tile) => (
+            <GridListTile>
+              <img
+                src={null}
+                alt={`Img for: ${tile.name}`}
+              />
+              <GridListTileBar
+                title={(
+                  <Ratings id={tile.id} />
              )}
-                  subtitle={(
-                    <button
-                      type="submit"
-                      className={classes.modalButton}
-                      onClick={() => {
-                        if (modalIsOpen === false) {
-                          setModal(true);
-                        } else {
-                          setModal(false);
-                        }
-                      }}
-                    >
-                      {tile.name}
-                      {' '}
-                      {tile.category}
-                      {' '}
-                      $
-                      {tile.default_price}
-                      {' '}
-                    </button>
+                subtitle={(
+                  <button
+                    type="submit"
+                    className={classes.modalButton}
+                    onClick={() => {
+                      if (modalIsOpen === false) {
+                        setModal(true);
+                      } else {
+                        setModal(false);
+                      }
+                    }}
+                  >
+                    {tile.name}
+                    {' '}
+                    {tile.category}
+                    {' '}
+                    $
+                    {tile.default_price}
+                    {' '}
+                  </button>
              )}
-                  classes={{
-                    root: classes.titleBar,
-                    title: classes.title,
-                  }}
-                  actionIcon={(
-                    <IconButton aria-label={`star ${tile.title}`}>
-                      <StarBorderIcon className={classes.title} />
-                    </IconButton>
+                classes={{
+                  root: classes.titleBar,
+                  title: classes.title,
+                }}
+                actionIcon={(
+                  <IconButton aria-label={`star ${tile.title}`}>
+                    <StarBorderIcon className={classes.title} />
+                  </IconButton>
              )}
-                />
-              </GridListTile>
-            ))}
-          </GridList>
-        </div>
-      </>
-    );
-  };
+              />
+            </GridListTile>
+          ))}
+        </GridList>
+      </div>
+    </>
+  );
 
   if (props.relatedProducts !== []) {
     return CardRender();
