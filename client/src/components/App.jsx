@@ -13,7 +13,7 @@ const RelatedItems = () => {
   // const [productInfo, setProductInfo] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [relatedProductsInfo, setRelatedProductsInfo] = useState([]);
-
+  const [relatedProductsPhotos, setRelatedProductPhotos] = useState([]);
   const currentId = 4;
 
   useEffect(() => {
@@ -27,6 +27,21 @@ const RelatedItems = () => {
         return Promise.all(promiseArr);
       }).then((data) => {
         setRelatedProductsInfo(data);
+      });
+  }, []);
+
+  useEffect(() => {
+    GetRelatedProducts(currentId)
+      .then((data) => {
+        setRelatedProducts(data);
+        return data;
+      })
+      .then((data) => {
+        const photosPromiseArr = data.map((id) => GetPhotos(id));
+        return Promise.all(photosPromiseArr);
+      }).then((data) => {
+        setRelatedProductPhotos(data);
+        console.log('should be the arr of objs: ', data);
       });
   }, []);
 
