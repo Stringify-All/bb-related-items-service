@@ -26,6 +26,13 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
+  modalButton: {
+    background: 'none !important',
+    border: 'none',
+    padding: '0!important',
+    color: theme.palette.primary.light,
+    fontSize: '100',
+  },
 }));
 
 export default function SimpleModal(props) {
@@ -45,9 +52,9 @@ export default function SimpleModal(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Text in a modal</h2>
+      <h2 id="simple-modal-title">Product Details:</h2>
       <p id="simple-modal-description">
-        Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
+       {props.tile.description}
       </p>
       {/* <SimpleModal /> */}
     </div>
@@ -55,7 +62,7 @@ export default function SimpleModal(props) {
 
   return (
     <div>
-      <button type="button" onClick={handleOpen}>
+      <button type="button" onClick={handleOpen} className={classes.modalButton}>
         {props.tile.name}
         {' '}
         {props.tile.category}

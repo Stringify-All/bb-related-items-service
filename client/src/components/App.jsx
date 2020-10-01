@@ -14,7 +14,7 @@ const RelatedItems = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [relatedProductsInfo, setRelatedProductsInfo] = useState([]);
   const [relatedProductsPhotos, setRelatedProductPhotos] = useState([]);
-  const currentId = 4;
+  const currentId = 3;
 
   useEffect(() => {
     GetRelatedProducts(currentId)
