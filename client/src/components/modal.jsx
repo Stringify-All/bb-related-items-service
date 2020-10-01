@@ -20,9 +20,10 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    width: 400,
+    width: 500,
+    height: 400,
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: '6px solid #5eaaa8',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -52,11 +53,35 @@ export default function SimpleModal(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h2 id="simple-modal-title">Product Details:</h2>
-      <p id="simple-modal-description">
-       {props.tile.description}
-      </p>
-      {/* <SimpleModal /> */}
+      <div id="content">
+        <div style={{ width: '50%', float: 'left', padding: '10px' }}>
+          <h1>
+            {props.tile.name}
+          </h1>
+          <div id="object1" />
+          <p>
+            {props.tile.description}
+          </p>
+          <div id="object2" />
+          <p>
+            {props.tile.features[0].value}
+          </p>
+        </div>
+
+        <div style={{ width: '50%', float: 'right', padding: '10px' }}>
+          <h1>
+            {props.selectedProductDetails.name}
+          </h1>
+          <div id="object3" />
+          <p>
+            {props.selectedProductDetails.description}
+          </p>
+          <div id="object4" />
+          <p>
+            {props.selectedProductDetails.features[0].value}
+          </p>
+        </div>
+      </div>
     </div>
   );
 

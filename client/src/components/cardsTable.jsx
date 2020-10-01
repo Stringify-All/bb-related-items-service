@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
@@ -90,7 +91,7 @@ const CardsTable = (props) => {
                       {tile.default_price}
                       {' '}
                     </button> */}
-                    <SimpleModal tile={props.relatedProducts[index]} setModal={setModal} />
+                    <SimpleModal tile={props.relatedProducts[index]} setModal={setModal} selectedProductDetails={props.selectedProductDetails} />
                   </div>
              )}
                 classes={{

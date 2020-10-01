@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -14,8 +15,10 @@ const RelatedItems = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [relatedProductsInfo, setRelatedProductsInfo] = useState([]);
   const [relatedProductsPhotos, setRelatedProductPhotos] = useState([]);
-  const currentId = 3;
+  const [selectedProductDetails, setSelectedProductDetails] = useState([]);
 
+  const currentId = 4;
+  // gets details for related products
   useEffect(() => {
     GetRelatedProducts(currentId)
       .then((data) => {
@@ -30,6 +33,16 @@ const RelatedItems = () => {
       });
   }, []);
 
+  // gets info for the selected item
+  useEffect(() => {
+    GetRelatedProductDetails(currentId)
+      .then((data) => {
+        setSelectedProductDetails(data);
+        console.log('info for id 4: ', data);
+      });
+  }, []);
+
+  // gets pictures for related products
   useEffect(() => {
     GetRelatedProducts(currentId)
       .then((data) => {
@@ -55,7 +68,7 @@ const RelatedItems = () => {
           {`You clicked ${count} times.`}
         </p>
         <button onClick={() => setCount(count + 1)} type="submit">Dangerous Button</button>
-        <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} />
+        <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} />
       </body>
     </>
   );
