@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
     width: 500,
-    height: 400,
+    height: 600,
     backgroundColor: theme.palette.background.paper,
     border: '6px solid #5eaaa8',
     boxShadow: theme.shadows[5],
@@ -32,12 +32,11 @@ const useStyles = makeStyles((theme) => ({
     border: 'none',
     padding: '0!important',
     color: theme.palette.primary.light,
-    fontSize: '100',
+    fontSize: '150',
   },
 }));
 
 export default function SimpleModal(props) {
-  console.log('here are the props in modal: ', props);
   const classes = useStyles();
   // getModalStyle is not a pure function, we roll the style only on the first render
   const [modalStyle] = React.useState(getModalStyle);
@@ -54,10 +53,13 @@ export default function SimpleModal(props) {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <div id="content">
+        <h1>
+          What are these Thr3ads made of?
+        </h1>
         <div style={{ width: '50%', float: 'left', padding: '10px' }}>
-          <h1>
+          <h2>
             {props.tile.name}
-          </h1>
+          </h2>
           <div id="object1" />
           <p>
             {props.tile.description}
@@ -69,9 +71,9 @@ export default function SimpleModal(props) {
         </div>
 
         <div style={{ width: '50%', float: 'right', padding: '10px' }}>
-          <h1>
+          <h2>
             {props.selectedProductDetails.name}
-          </h1>
+          </h2>
           <div id="object3" />
           <p>
             {props.selectedProductDetails.description}

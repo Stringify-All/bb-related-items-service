@@ -7,7 +7,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
-import StarBorderIcon from '@material-ui/icons/StarBorder';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import Ratings from './ratings.jsx';
 import SimpleModal from './modal.jsx';
 
@@ -53,7 +53,6 @@ const CardsTable = (props) => {
       }
       // props.relatedProducts[i].image = props.relatedPhotos[i];
     }
-    console.log(props.relatedProducts[0].image);
   }
   const CardRender = () => (
     <>
@@ -72,25 +71,6 @@ const CardsTable = (props) => {
              )}
                 subtitle={(
                   <div>
-                    {/* <button
-                      type="submit"
-                      className={classes.modalButton}
-                      onClick={() => {
-                        if (modalIsOpen === false) {
-                          setModal(true);
-                        } else {
-                          setModal(false);
-                        }
-                      }}
-                    >
-                      {tile.name}
-                      {' '}
-                      {tile.category}
-                      {' '}
-                      $
-                      {tile.default_price}
-                      {' '}
-                    </button> */}
                     <SimpleModal tile={props.relatedProducts[index]} setModal={setModal} selectedProductDetails={props.selectedProductDetails} />
                   </div>
              )}
@@ -100,7 +80,7 @@ const CardsTable = (props) => {
                 }}
                 actionIcon={(
                   <IconButton aria-label={`star ${tile.title}`}>
-                    <StarBorderIcon className={classes.title} />
+                    <AddCircleIcon className={classes.title} />
                   </IconButton>
              )}
               />
