@@ -53,7 +53,7 @@ const CardsTable = (props) => {
       // eslint-disable-next-line guard-for-in
       for (const key in props.relatedProducts[i]) {
         if (typeof (props.relatedPhotos[i]) === 'object') {
-          console.log('so youre saying theres a chance...', props.relatedPhotos[i].results[0].photos[0]);
+          // console.log('Hard to find URL: ', props.relatedPhotos[i].results[0].photos[0]);
           props.relatedProducts[i].image = props.relatedPhotos[i].results[0].photos[0].url;
         }
       }
@@ -77,25 +77,28 @@ const CardsTable = (props) => {
                   <Ratings id={tile.id} />
              )}
                 subtitle={(
-                  <button
-                    type="submit"
-                    className={classes.modalButton}
-                    onClick={() => {
-                      if (modalIsOpen === false) {
-                        setModal(true);
-                      } else {
-                        setModal(false);
-                      }
-                    }}
-                  >
-                    {tile.name}
-                    {' '}
-                    {tile.category}
-                    {' '}
-                    $
-                    {tile.default_price}
-                    {' '}
-                  </button>
+                  <div>
+                    {/* <button
+                      type="submit"
+                      className={classes.modalButton}
+                      onClick={() => {
+                        if (modalIsOpen === false) {
+                          setModal(true);
+                        } else {
+                          setModal(false);
+                        }
+                      }}
+                    >
+                      {tile.name}
+                      {' '}
+                      {tile.category}
+                      {' '}
+                      $
+                      {tile.default_price}
+                      {' '}
+                    </button> */}
+                    <SimpleModal tile={props.relatedProducts[index]} setModal={setModal} />
+                  </div>
              )}
                 classes={{
                   root: classes.titleBar,
