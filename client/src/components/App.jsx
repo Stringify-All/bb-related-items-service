@@ -40,8 +40,8 @@ const RelatedItems = () => {
         const photosPromiseArr = data.map((id) => GetPhotos(id));
         return Promise.all(photosPromiseArr);
       }).then((data) => {
+        // console.log('here is the data in App.jsx: ', data);
         setRelatedProductPhotos(data);
-        console.log('should be the arr of objs: ', data);
       });
   }, []);
 
@@ -55,7 +55,7 @@ const RelatedItems = () => {
           {`You clicked ${count} times.`}
         </p>
         <button onClick={() => setCount(count + 1)} type="submit">Dangerous Button</button>
-        <CardsTable relatedProducts={relatedProductsInfo} setRelatedInfo={setRelatedProductsInfo} />
+        <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} />
       </body>
     </>
   );

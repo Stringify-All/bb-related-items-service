@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable import/extensions */
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
@@ -42,15 +43,33 @@ const CardsTable = (props) => {
   const classes = useStyles();
   const [modalIsOpen, setModal] = useState(false);
 
-  console.log('here is the state being passed in: ', props.relatedProducts);
+  // console.log('here is the state being passed in: ', props.relatedPhotos);
+
+  if (props.relatedPhotos.length > 0) {
+    for (let i = 0; i < props.relatedProducts.length; i++) {
+      // console.log('each index of the relatedProducts: ', props.relatedProducts[i]);
+      // console.log('each index of the photos thing: ', props.relatedPhotos[i])
+      // eslint-disable-next-line no-restricted-syntax
+      // eslint-disable-next-line guard-for-in
+      for (const key in props.relatedProducts[i]) {
+        if (typeof (props.relatedPhotos[i]) === 'object') {
+          console.log('so youre saying theres a chance...', props.relatedPhotos[i].results[0].photos[0]);
+          props.relatedProducts[i].image = props.relatedPhotos[i].results[0].photos[0].url;
+        }
+      }
+      // props.relatedProducts[i].image = props.relatedPhotos[i];
+    }
+    console.log(props.relatedProducts[0].image);
+  }
   const CardRender = () => (
     <>
       <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
-          {props.relatedProducts.map((tile) => (
+          {props.relatedProducts.map((tile, index) => (
             <GridListTile>
+              {/* {console.log('should be an object: ', props.relatedProducts[index].image)} */}
               <img
-                src={null}
+                src={props.relatedProducts[index].image}
                 alt={`Img for: ${tile.name}`}
               />
               <GridListTileBar
