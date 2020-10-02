@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable import/extensions */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -56,6 +56,7 @@ const CardsTable = (props) => {
   }
   const CardRender = () => (
     <>
+      <h1>You might also dig on:</h1>
       <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {props.relatedProducts.map((tile, index) => (
@@ -78,8 +79,17 @@ const CardsTable = (props) => {
                   root: classes.titleBar,
                   title: classes.title,
                 }}
+                /* onClick, this button should add the clicked card to a new state, that will render another carousel underneath the existing one. */
                 actionIcon={(
-                  <IconButton aria-label={`star ${tile.title}`}>
+                  <IconButton
+                    aria-label={`star ${tile.title}`}
+                    onClick={function () {
+                      useEffect(() => {
+                        props.OutfitArray.push(tile);
+                        console.log(tile);
+                      });
+                    }}
+                  >
                     <AddCircleIcon className={classes.title} />
                   </IconButton>
              )}

@@ -20,10 +20,10 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    width: 500,
+    width: 600,
     height: 600,
     backgroundColor: theme.palette.background.paper,
-    border: '6px solid #5eaaa8',
+    border: '3px solid #5eaaa8',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -33,6 +33,10 @@ const useStyles = makeStyles((theme) => ({
     padding: '0!important',
     color: theme.palette.primary.light,
     fontSize: '150',
+  },
+  object: {
+    height: 15,
+    // display: 'inline-flex',
   },
 }));
 
@@ -56,31 +60,48 @@ export default function SimpleModal(props) {
         <h1>
           What are these Thr3ads made of?
         </h1>
+        {/* left content */}
         <div style={{ width: '50%', float: 'left', padding: '10px' }}>
           <h2>
             {props.tile.name}
           </h2>
-          <div id="object1" />
-          <p>
-            {props.tile.description}
-          </p>
-          <div id="object2" />
+          <div className={classes.object} />
           <p>
             {props.tile.features[0].value}
           </p>
+          <div className={classes.object} />
+          <p>
+            ${props.tile.default_price}
+          </p>
         </div>
 
+        {/* center content
+        <div style={{ float: 'center' }}>
+          <p>
+            Product Name
+          </p>
+          <div className="object" />
+          <p>
+            Features
+          </p>
+          <div className="object" />
+          <p>
+            Price
+          </p>
+        </div> */}
+
+        {/* right content */}
         <div style={{ width: '50%', float: 'right', padding: '10px' }}>
           <h2>
             {props.selectedProductDetails.name}
           </h2>
-          <div id="object3" />
-          <p>
-            {props.selectedProductDetails.description}
-          </p>
-          <div id="object4" />
+          <div className={classes.object} />
           <p>
             {props.selectedProductDetails.features[0].value}
+          </p>
+          <div className={classes.object} />
+          <p>
+            ${props.selectedProductDetails.default_price}
           </p>
         </div>
       </div>
