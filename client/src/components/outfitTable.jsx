@@ -34,32 +34,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const OutfitTable = (props) => {
-  console.log('props in the outfitTable: ', props.outfitList);
   const classes = useStyles();
-  const [modalIsOpen, setModal] = useState(false);
 
-  // console.log('here is the state being passed in: ', props.relatedPhotos);
-
-  // if (props.relatedPhotos.length > 0) {
-  //   for (let i = 0; i < props.relatedProducts.length; i++) {
-  //     // console.log('each index of the relatedProducts: ', props.relatedProducts[i]);
-  //     // console.log('each index of the photos thing: ', props.relatedPhotos[i])
-  //     // eslint-disable-next-line no-restricted-syntax
-  //     // eslint-disable-next-line guard-for-in
-  //     for (const key in props.relatedProducts[i]) {
-  //       if (typeof (props.relatedPhotos[i]) === 'object') {
-  //         // console.log('Hard to find URL: ', props.relatedPhotos[i].results[0].photos[0]);
-  //         props.relatedProducts[i].image = props.relatedPhotos[i].results[0].photos[0].url;
-  //       }
-  //     }
-  //     // props.relatedProducts[i].image = props.relatedPhotos[i];
-  //   }
-  // }
   const CardRender = () => (
     <>
-    <h1>Build your Thr3ads Here kids:</h1>
+      <h1>Build your Thr3ads Here kids:</h1>
       <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
+          {console.log('heres what were mapping over: ', props.outfitList)}
           {props.outfitList.map((tile, index) => (
             <GridListTile>
               {/* {console.log('should be an object: ', props.relatedProducts[index].image)} */}
@@ -72,26 +54,17 @@ const OutfitTable = (props) => {
                   <Ratings id={tile.id} />
              )}
                 subtitle={(
-                  // <div>
-                  //   <SimpleModal tile={props.outfitList[index]} setModal={setModal} selectedProductDetails={props.selectedProductDetails} />
-                  // </div>
-                  <div>INFORMATION</div>
+                  <div>
+                    {tile.name}
+                    {tile.category}
+                    $
+                    {tile.default_price}
+                  </div>
              )}
                 classes={{
                   root: classes.titleBar,
                   title: classes.title,
                 }}
-                /* onClick, this button should add the clicked card to a new state, that will render another carousel underneath the existing one. */
-            //     actionIcon={(
-            //       <IconButton
-            //         aria-label={`star ${tile.title}`}
-            //         onClick={function () {
-            //           console.log(tile);
-            //         }}
-            //       >
-            //         <AddCircleIcon className={classes.title} />
-            //       </IconButton>
-            //  )}
               />
             </GridListTile>
           ))}
@@ -104,7 +77,7 @@ const OutfitTable = (props) => {
     return CardRender();
   }
   return (
-    <div>loading</div>
+    <div>Add Something to your outfit</div>
   );
 };
 

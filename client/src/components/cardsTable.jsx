@@ -49,11 +49,17 @@ const CardsTable = (props) => {
         if (typeof (props.relatedPhotos[i]) === 'object') {
           // console.log('Hard to find URL: ', props.relatedPhotos[i].results[0].photos[0]);
           props.relatedProducts[i].image = props.relatedPhotos[i].results[0].photos[0].url;
+        } else {
+          props.relatedProducts[i].image = 'https://www.m-suniforms.gr/wp-content/uploads/2018/10/no-image-icon-21.png';
         }
       }
       // props.relatedProducts[i].image = props.relatedPhotos[i];
     }
   }
+  // const outfitHandler = (item) => {
+  //   props.setOutfitList(props.outfitArray.concat(item));
+  // };
+
   const CardRender = () => (
     <>
       <h1>You might also dig on:</h1>
@@ -84,10 +90,7 @@ const CardsTable = (props) => {
                   <IconButton
                     aria-label={`star ${tile.title}`}
                     onClick={function () {
-                      useEffect(() => {
-                        props.OutfitArray.push(tile);
-                        console.log(tile);
-                      });
+                      props.setOutfitList(item => item.concat(tile))
                     }}
                   >
                     <AddCircleIcon className={classes.title} />

@@ -18,16 +18,7 @@ const RelatedItems = () => {
   const [relatedProductsPhotos, setRelatedProductPhotos] = useState([]);
   const [selectedProductDetails, setSelectedProductDetails] = useState([]);
 
-  const OutfitArray = [{
-    id: 0,
-    category: 'placeholder',
-    default_price: 0,
-    description: 'Add something to your outfit',
-    features: {},
-    image: 'https://www.firstbenefits.org/wp-content/uploads/2017/10/placeholder.png',
-    name: 'placeholder',
-    slogan: 'beep beep boop boop',
-  }];
+  const outfitArray = [];
   const [outfitList, setOutfitList] = useState([]);
 
   const currentId = 3;
@@ -43,8 +34,7 @@ const RelatedItems = () => {
         return Promise.all(promiseArr);
       }).then((data) => {
         setRelatedProductsInfo(data);
-      })
-      .then(setOutfitList(OutfitArray));
+      });
   }, []);
 
   // gets info for the selected item
@@ -52,7 +42,6 @@ const RelatedItems = () => {
     GetRelatedProductDetails(currentId)
       .then((data) => {
         setSelectedProductDetails(data);
-        console.log('info for id 4: ', data);
       });
   }, []);
 
@@ -82,7 +71,7 @@ const RelatedItems = () => {
           {`You clicked ${count} times.`}
         </p>
         <button onClick={() => setCount(count + 1)} type="submit">Dangerous Button</button>
-        <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} OutfitArray={OutfitArray} />
+        <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} outfitArray={outfitArray} setOutfitList={setOutfitList} />
         <OutfitTable outfitList={outfitList} />
       </body>
     </>
