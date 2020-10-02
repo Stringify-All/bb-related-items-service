@@ -71,7 +71,7 @@ const RelatedItems = () => {
           {`You clicked ${count} times.`}
         </p>
         <button onClick={() => setCount(count + 1)} type="submit">Dangerous Button</button>
-        <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} outfitArray={outfitArray} setOutfitList={setOutfitList} />
+        <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} outfitArray={outfitArray} setOutfitList={setOutfitList} outfitList={outfitList} />
         <OutfitTable outfitList={outfitList} />
       </body>
     </>

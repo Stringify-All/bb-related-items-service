@@ -37,14 +37,8 @@ const CardsTable = (props) => {
   const classes = useStyles();
   const [modalIsOpen, setModal] = useState(false);
 
-  // console.log('here is the state being passed in: ', props.relatedPhotos);
-
   if (props.relatedPhotos.length > 0) {
     for (let i = 0; i < props.relatedProducts.length; i++) {
-      // console.log('each index of the relatedProducts: ', props.relatedProducts[i]);
-      // console.log('each index of the photos thing: ', props.relatedPhotos[i])
-      // eslint-disable-next-line no-restricted-syntax
-      // eslint-disable-next-line guard-for-in
       for (const key in props.relatedProducts[i]) {
         if (typeof (props.relatedPhotos[i]) === 'object') {
           // console.log('Hard to find URL: ', props.relatedPhotos[i].results[0].photos[0]);
@@ -53,12 +47,8 @@ const CardsTable = (props) => {
           props.relatedProducts[i].image = 'https://www.m-suniforms.gr/wp-content/uploads/2018/10/no-image-icon-21.png';
         }
       }
-      // props.relatedProducts[i].image = props.relatedPhotos[i];
     }
   }
-  // const outfitHandler = (item) => {
-  //   props.setOutfitList(props.outfitArray.concat(item));
-  // };
 
   const CardRender = () => (
     <>
@@ -90,7 +80,12 @@ const CardsTable = (props) => {
                   <IconButton
                     aria-label={`star ${tile.title}`}
                     onClick={function () {
-                      props.setOutfitList(item => item.concat(tile))
+                      console.log('should be a number, frankly should be -1 ', props.outfitList)
+                      if (props.outfitList.indexOf(tile) < 0) {
+                        props.setOutfitList(item => item.concat(tile))
+                      } else {
+                        alert('You already got one dawg!')
+                      }
                     }}
                   >
                     <AddCircleIcon className={classes.title} />

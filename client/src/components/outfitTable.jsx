@@ -56,7 +56,9 @@ const OutfitTable = (props) => {
                 subtitle={(
                   <div>
                     {tile.name}
+                    {' '}
                     {tile.category}
+                    {' '}
                     $
                     {tile.default_price}
                   </div>
