@@ -42,9 +42,11 @@ const CardsTable = (props) => {
       for (const key in props.relatedProducts[i]) {
         if (typeof (props.relatedPhotos[i]) === 'object') {
           // console.log('Hard to find URL: ', props.relatedPhotos[i].results[0].photos[0]);
-          props.relatedProducts[i].image = props.relatedPhotos[i].results[0].photos[0].url;
-        } else {
-          props.relatedProducts[i].image = 'https://www.m-suniforms.gr/wp-content/uploads/2018/10/no-image-icon-21.png';
+          if (props.relatedPhotos[i].results[0].photos[0].url) {
+            props.relatedProducts[i].image = props.relatedPhotos[i].results[0].photos[0].url;
+          } else {
+            props.relatedProducts[i].image = 'https://www.m-suniforms.gr/wp-content/uploads/2018/10/no-image-icon-21.png';
+          }
         }
       }
     }
@@ -81,9 +83,9 @@ const CardsTable = (props) => {
                     aria-label={`star ${tile.title}`}
                     onClick={function () {
                       if (props.outfitList.indexOf(tile) < 0) {
-                        props.setOutfitList(item => item.concat(tile))
+                        props.setOutfitList((item) => item.concat(tile));
                       } else {
-                        alert('You already got one dawg!')
+                        alert('You already got one dawg!');
                       }
                     }}
                   >
