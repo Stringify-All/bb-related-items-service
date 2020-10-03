@@ -22,8 +22,8 @@ function getModalStyle() {
 const useStyles = makeStyles((theme) => ({
   paper: {
     position: 'absolute',
-    width: 600,
-    height: 600,
+    width: 500,
+    height: 400,
     backgroundColor: theme.palette.background.paper,
     border: '3px solid #5eaaa8',
     boxShadow: theme.shadows[5],
@@ -124,20 +124,26 @@ const useStyles = makeStyles((theme) => ({
 //       </Modal>
 //     </div>
 //   );
-function FormRow() {
+function FormRow(props) {
+  console.log('heres what formRow has access to: ', props);
   const classes = useStyles();
+  if (props.productTwo !== undefined) {
+    return (
+      <>
+        <Grid item xs={4}>
+          <Paper className={classes.gridPaper} style={{ float: 'left', padding: '10px' }}>{props.productOne}</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.gridPaper}>{props.item}</Paper>
+        </Grid>
+        <Grid item xs={4}>
+          <Paper className={classes.gridPaper} style={{ float: 'right', padding: '10px' }}>{props.productTwo}</Paper>
+        </Grid>
+      </>
+    );
+  }
   return (
-    <>
-      <Grid item xs={4}>
-        <Paper className={classes.gridPaper}>item</Paper>
-      </Grid>
-      <Grid item xs={4}>
-        <Paper className={classes.gridPaper}>item</Paper>
-      </Grid>
-      <Grid item xs={4}>
-        <Paper className={classes.gridPaper}>item</Paper>
-      </Grid>
-    </>
+    <div />
   );
 }
 
@@ -157,13 +163,14 @@ export default function SimpleModal(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
+      Compare and Contrast like a b0ss:
       <div className={classes.root}>
         <Grid container spacing={1}>
           <Grid container item xs={12} spacing={3}>
-            <FormRow />
+            <FormRow productOne={props.selectedProductDetails.name} item="Item Name" productTwo={props.tile.name} />
           </Grid>
           <Grid container item xs={12} spacing={3}>
-            <FormRow />
+            <FormRow productOne={`$${props.selectedProductDetails.default_price}`} item="Price" productTwo={`$${props.tile.default_price}`} />
           </Grid>
           <Grid container item xs={12} spacing={3}>
             <FormRow />
