@@ -21,7 +21,7 @@ const RelatedItems = () => {
   const outfitArray = [];
   const [outfitList, setOutfitList] = useState([]);
 
-  const currentId = 3;
+  const currentId = 4;
   // gets details for related products
   useEffect(() => {
     GetRelatedProducts(currentId)

@@ -80,7 +80,6 @@ const CardsTable = (props) => {
                   <IconButton
                     aria-label={`star ${tile.title}`}
                     onClick={function () {
-                      console.log('should be a number, frankly should be -1 ', props.outfitList)
                       if (props.outfitList.indexOf(tile) < 0) {
                         props.setOutfitList(item => item.concat(tile))
                       } else {
