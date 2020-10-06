@@ -45,11 +45,6 @@ const GlobalStyle = createGlobalStyle`
     transition-timing-function: ease-in;
     transition: .3s;
   }
-
-  .container {
-    display: inline; /* or inline-flex */;
-    dlex-direction: row;
-  }
 `;
 
 export default GlobalStyle;

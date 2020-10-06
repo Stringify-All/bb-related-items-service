@@ -4,9 +4,9 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 9001;
 // const getApiData = require('./api-helper.js');
-const cors = require('cors');
+// const cors = require('cors');
 
-app.use(cors());
+// app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

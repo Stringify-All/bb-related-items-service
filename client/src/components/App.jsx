@@ -62,19 +62,21 @@ const RelatedItems = () => {
   }, []);
 
   return (
-    <>
-      <GlobalStyle />
-      <body>
-        <h1>Welcome to the Dangerzone.</h1>
-        <p> Long Live the Scrumdog Millionaires </p>
-        <p>
-          {`You clicked ${count} times.`}
-        </p>
-        <button onClick={() => setCount(count + 1)} type="submit">Dangerous Button</button>
-        <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} outfitArray={outfitArray} setOutfitList={setOutfitList} outfitList={outfitList} />
-        <OutfitTable outfitList={outfitList} />
-      </body>
-    </>
+    <div>
+      <>
+        <GlobalStyle />
+        <body>
+          <h1>Welcome to the Dangerzone.</h1>
+          <p> Long Live the Scrumdog Millionaires </p>
+          <p>
+            {`You clicked ${count} times.`}
+          </p>
+          <button onClick={() => setCount(count + 1)} type="submit">Dangerous Button</button>
+          <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} outfitArray={outfitArray} setOutfitList={setOutfitList} outfitList={outfitList} />
+          <OutfitTable outfitList={outfitList} />
+        </body>
+      </>
+    </div>
   );
 };
 
