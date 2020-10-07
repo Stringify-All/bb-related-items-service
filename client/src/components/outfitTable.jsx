@@ -13,7 +13,7 @@ import SimpleModal from './modal.jsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'block',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
+    spacing: 4,
   },
   title: {
     color: theme.palette.primary.main,
@@ -31,6 +32,9 @@ const useStyles = makeStyles((theme) => ({
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
   },
+  card: {
+    maxWidth: '300px',
+  },
 }));
 
 const OutfitTable = (props) => {
@@ -38,14 +42,15 @@ const OutfitTable = (props) => {
 
   const CardRender = () => (
     <>
-      <h1>Build your Thr3ads Here kids:</h1>
+      <h1>Like something? Add it to your Outfit:</h1>
       <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {console.log('heres what were mapping over: ', props.outfitList)}
           {props.outfitList.map((tile, index) => (
-            <GridListTile>
+            <GridListTile className={classes.card} key={tile.img}>
               {/* {console.log('should be an object: ', props.relatedProducts[index].image)} */}
               <img
+                className={classes.cardImg}
                 src={props.outfitList[index].image}
                 alt={`Img for: ${tile.name}`}
               />

@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable max-len */
 /* eslint-disable no-restricted-syntax */
 /* eslint-disable import/extensions */
@@ -18,11 +20,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
+    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
   gridList: {
     flexWrap: 'nowrap',
-    // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
+    spacing: 6,
   },
   title: {
     color: theme.palette.primary.main,
@@ -38,14 +41,14 @@ const CardsTable = (props) => {
   const [modalIsOpen, setModal] = useState(false);
 
   if (props.relatedPhotos.length > 0) {
-    for (let i = 0; i < props.relatedProducts.length; i++) {
+    for (let i = 0; i < props.relatedProducts.length; i += 1) {
       for (const key in props.relatedProducts[i]) {
         if (typeof (props.relatedPhotos[i]) === 'object') {
           // console.log('Hard to find URL: ', props.relatedPhotos[i].results[0].photos[0]);
           if (props.relatedPhotos[i].results[0].photos[0].url) {
             props.relatedProducts[i].image = props.relatedPhotos[i].results[0].photos[0].url;
           } else {
-            props.relatedProducts[i].image = 'https://www.m-suniforms.gr/wp-content/uploads/2018/10/no-image-icon-21.png';
+            props.relatedProducts[i].image = 'https://www.warnersstellian.com/Content/images/product_image_not_available.png';
           }
         }
       }
@@ -54,12 +57,12 @@ const CardsTable = (props) => {
 
   const CardRender = () => (
     <>
-      <h1>You might also dig on:</h1>
+      <h1>Based on your viewing:</h1>
+      <p />
       <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {props.relatedProducts.map((tile, index) => (
-            <GridListTile>
-              {/* {console.log('should be an object: ', props.relatedProducts[index].image)} */}
+            <GridListTile style={{ maxWidth: '300px' }} key={tile.img}>
               <img
                 src={props.relatedProducts[index].image}
                 alt={`Img for: ${tile.name}`}

@@ -45,6 +45,12 @@ const GlobalStyle = createGlobalStyle`
     transition-timing-function: ease-in;
     transition: .3s;
   }
+
+  img {
+    position: fixed;
+    max-width: 100%;
+    max-height: 100%;
+  },
 `;
 
 export default GlobalStyle;

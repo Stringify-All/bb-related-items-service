@@ -19,7 +19,12 @@ const RelatedItems = () => {
   const [selectedProductDetails, setSelectedProductDetails] = useState([]);
 
   const outfitArray = [];
-  const [outfitList, setOutfitList] = useState([]);
+  const [outfitList, setOutfitList] = useState([
+    {
+      image: 'https://lh3.googleusercontent.com/proxy/1XZ5LPpBHOS49SjsUog68KlMGKLpXpeybKvUNkdEtfS-n5kYhI2TI0IOxwLBGs9P80sdClUrz2GidmkMOwvglcS9ZOV8s2pItV2aX8-rzA116lYZbG11xuDwi-jszIPUWo41kWiot-DZcLQ3vEE',
+      name: 'Add Items Here!',
+    },
+  ]);
 
   const currentId = 4;
   // gets details for related products
@@ -66,14 +71,13 @@ const RelatedItems = () => {
       <>
         <GlobalStyle />
         <body>
-          <h1>Welcome to the Dangerzone.</h1>
           <p> Long Live the Scrumdog Millionaires </p>
+          <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} outfitArray={outfitArray} setOutfitList={setOutfitList} outfitList={outfitList} />
+          <OutfitTable outfitList={outfitList} />
           <p>
             {`You clicked ${count} times.`}
           </p>
           <button onClick={() => setCount(count + 1)} type="submit">Dangerous Button</button>
-          <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} outfitArray={outfitArray} setOutfitList={setOutfitList} outfitList={outfitList} />
-          <OutfitTable outfitList={outfitList} />
         </body>
       </>
     </div>
