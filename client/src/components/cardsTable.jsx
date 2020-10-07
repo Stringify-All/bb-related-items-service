@@ -15,17 +15,16 @@ import SimpleModal from './modal.jsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: 'block',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
     backgroundColor: theme.palette.background.paper,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
   },
   gridList: {
     flexWrap: 'nowrap',
     transform: 'translateZ(0)',
-    spacing: 6,
+    spacing: 4,
   },
   title: {
     color: theme.palette.primary.main,
@@ -33,6 +32,11 @@ const useStyles = makeStyles((theme) => ({
   titleBar: {
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+  },
+  card: {
+    maxWidth: '300px',
+    boxShadow: '0 3px 5px 2px rgba(0,0,0,0.3)',
+    margin: '20px',
   },
 }));
 
@@ -62,7 +66,7 @@ const CardsTable = (props) => {
       <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {props.relatedProducts.map((tile, index) => (
-            <GridListTile style={{ maxWidth: '300px' }} key={tile.img}>
+            <GridListTile className={classes.card} key={tile.img}>
               <img
                 src={props.relatedProducts[index].image}
                 alt={`Img for: ${tile.name}`}
