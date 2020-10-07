@@ -1,3 +1,4 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
@@ -6,7 +7,7 @@ import Grid from '@material-ui/core/Grid';
 
 // transition stuff
 import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
+// import Fade from '@material-ui/core/Fade';
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -53,7 +54,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function FormRow(props) {
-  console.log('heres what formRow has access to: ', props);
   const classes = useStyles();
   if (props.productTwo !== undefined) {
     return (
@@ -102,7 +102,7 @@ export default function SimpleModal(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h1>Compare and Contrast like a b0ss:</h1>
+      <h1 className="ri-h1">Compare and Contrast like a b0ss:</h1>
       <div className={classes.root}>
         <Grid container spacing={1}>
           <Grid container item xs={12} spacing={3}>

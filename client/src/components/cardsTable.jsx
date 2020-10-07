@@ -61,8 +61,7 @@ const CardsTable = (props) => {
 
   const CardRender = () => (
     <>
-      <h1>Based on your viewing:</h1>
-      <p />
+      <h2>Based on your viewing:</h2>
       <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {props.relatedProducts.map((tile, index) => (
@@ -87,6 +86,7 @@ const CardsTable = (props) => {
                 /* onClick, this button should add the clicked card to a new state, that will render another carousel underneath the existing one. */
                 actionIcon={(
                   <IconButton
+                    className="ri-button"
                     aria-label={`star ${tile.title}`}
                     onClick={function () {
                       if (props.outfitList.indexOf(tile) < 0) {

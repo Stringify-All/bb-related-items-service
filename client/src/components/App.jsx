@@ -2,7 +2,7 @@
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import GlobalStyle from './globalStyle.js';
+import '../App.css';
 import CardsTable from './cardsTable.jsx';
 import OutfitTable from './outfitTable.jsx';
 import GetProductList from './api_requests/productsList.jsx';
@@ -68,18 +68,15 @@ const RelatedItems = () => {
 
   return (
     <div>
-      <>
-        <GlobalStyle />
-        <body>
-          <p> Long Live the Scrumdog Millionaires </p>
-          <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} outfitArray={outfitArray} setOutfitList={setOutfitList} outfitList={outfitList} />
-          <OutfitTable outfitList={outfitList} />
-          <p>
-            {`You clicked ${count} times.`}
-          </p>
-          <button onClick={() => setCount(count + 1)} type="submit">Dangerous Button</button>
-        </body>
-      </>
+      <body className="ri-body">
+        <p> Long Live the Scrumdog Millionaires </p>
+        <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} outfitArray={outfitArray} setOutfitList={setOutfitList} outfitList={outfitList} />
+        <OutfitTable outfitList={outfitList} />
+        <p>
+          {`You clicked ${count} times.`}
+        </p>
+        <button className="ri-button" onClick={() => setCount(count + 1)} type="submit">Dangerous Button</button>
+      </body>
     </div>
   );
 };

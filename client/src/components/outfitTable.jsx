@@ -43,7 +43,7 @@ const OutfitTable = (props) => {
 
   const CardRender = () => (
     <>
-      <h1>Like something? Add it to your Outfit:</h1>
+      <h2>Like something??? Add it to your Outfit:</h2>
       <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {console.log('heres what were mapping over: ', props.outfitList)}
