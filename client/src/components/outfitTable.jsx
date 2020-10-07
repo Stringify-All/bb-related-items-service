@@ -46,9 +46,8 @@ const OutfitTable = (props) => {
       <h2>Like something??? Add it to your Outfit:</h2>
       <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
-          {console.log('heres what were mapping over: ', props.outfitList)}
           {props.outfitList.map((tile, index) => (
-            <GridListTile className={classes.card} key={tile.img}>
+            <GridListTile className={classes.card} key={index}>
               {/* {console.log('should be an object: ', props.relatedProducts[index].image)} */}
               <img
                 className={classes.cardImg}

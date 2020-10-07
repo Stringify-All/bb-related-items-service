@@ -49,10 +49,14 @@ const CardsTable = (props) => {
       for (const key in props.relatedProducts[i]) {
         if (typeof (props.relatedPhotos[i]) === 'object') {
           // console.log('Hard to find URL: ', props.relatedPhotos[i].results[0].photos[0]);
+          props.relatedProducts[i].image = [];
           if (props.relatedPhotos[i].results[0].photos[0].url) {
-            props.relatedProducts[i].image = props.relatedPhotos[i].results[0].photos[0].url;
+            for (let j = 0; j < props.relatedPhotos[i].results[0].photos.length; j += 1) {
+              props.relatedProducts[i].image.push(props.relatedPhotos[i].results[0].photos[j].url);
+              console.log('Getting down to brass tax: ', props.relatedPhotos[i].results[0].photos[j].url);
+            }
           } else {
-            props.relatedProducts[i].image = 'https://www.warnersstellian.com/Content/images/product_image_not_available.png';
+            props.relatedProducts[i].image.push('https://www.warnersstellian.com/Content/images/product_image_not_available.png');
           }
         }
       }
@@ -65,9 +69,10 @@ const CardsTable = (props) => {
       <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {props.relatedProducts.map((tile, index) => (
-            <GridListTile className={classes.card} key={tile.img}>
+            <GridListTile className={classes.card} key={index}>
+              {console.log('heres the object:  ', tile.image)}
               <img
-                src={props.relatedProducts[index].image}
+                src={tile.image}
                 alt={`Img for: ${tile.name}`}
               />
               <GridListTileBar
