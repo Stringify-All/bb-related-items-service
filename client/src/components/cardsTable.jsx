@@ -10,13 +10,7 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
-} from 'reactstrap';
+import Carousel from 'react-bootstrap/Carousel';
 import Ratings from './ratings.jsx';
 import SimpleModal from './modal.jsx';
 
@@ -51,12 +45,15 @@ const CardsTable = (props) => {
   const classes = useStyles();
   const [modalIsOpen, setModal] = useState(false);
 
+  props.relatedProducts.forEach((thing, index) => {
+    props.relatedProducts[index].image = [];
+  });
+
   if (props.relatedPhotos.length > 0) {
     for (let i = 0; i < props.relatedProducts.length; i += 1) {
       for (const key in props.relatedProducts[i]) {
         if (typeof (props.relatedPhotos[i]) === 'object') {
           // console.log('Hard to find URL: ', props.relatedPhotos[i].results[0].photos[0]);
-          props.relatedProducts[i].image = [];
           if (props.relatedPhotos[i].results[0].photos[0].url) {
             for (let j = 0; j < props.relatedPhotos[i].results[0].photos.length; j += 1) {
               props.relatedProducts[i].image.push(props.relatedPhotos[i].results[0].photos[j].url);
@@ -78,10 +75,17 @@ const CardsTable = (props) => {
           {props.relatedProducts.map((tile, index) => (
             <GridListTile className={classes.card} key={index}>
               {console.log('heres the object:  ', tile.image)}
-              <img
-                src={tile.image}
+              <Carousel interval={null}>
+                {tile.image.map((photo, i) => (
+                  <Carousel.Item className={classes.card}>
+                    <img src={photo} alt={`Img for ${tile.name}`} />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+              {/* <img
+                src={tile.image[1]}
                 alt={`Img for: ${tile.name}`}
-              />
+              /> */}
               <GridListTileBar
                 title={(
                   <Ratings id={tile.id} />
