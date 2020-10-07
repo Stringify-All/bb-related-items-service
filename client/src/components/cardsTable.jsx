@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     flexWrap: 'nowrap',
-    // transform: 'translateZ(0)',
+    transform: 'translateZ(-1)',
     spacing: 4,
   },
   title: {
@@ -34,6 +34,8 @@ const useStyles = makeStyles((theme) => ({
   titleBar: {
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    position: 'absolute',
+    zIndex: 2,
   },
   card: {
     maxWidth: '300px',
