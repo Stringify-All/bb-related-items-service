@@ -15,7 +15,7 @@ import Ratings from './ratings.jsx';
 import SimpleModal from './modal.jsx';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  riroot: {
     display: 'block',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     flexWrap: 'nowrap',
-    transform: 'translateZ(0)',
+    // transform: 'translateZ(0)',
     spacing: 4,
   },
   title: {
@@ -70,12 +70,12 @@ const CardsTable = (props) => {
   const CardRender = () => (
     <>
       <h2>Based on your viewing:</h2>
-      <div className={classes.root}>
+      <div className={classes.riroot}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {props.relatedProducts.map((tile, index) => (
             <GridListTile className={classes.card} key={index}>
               {console.log('heres the object:  ', tile.image)}
-              <Carousel interval={null}>
+              <Carousel className="ri-carousel" interval={null}>
                 {tile.image.map((photo, i) => (
                   <Carousel.Item className={classes.card}>
                     <img src={photo} alt={`Img for ${tile.name}`} />
@@ -96,7 +96,7 @@ const CardsTable = (props) => {
                   </div>
              )}
                 classes={{
-                  root: classes.titleBar,
+                  riroot: classes.titleBar,
                   title: classes.title,
                 }}
                 /* onClick, this button should add the clicked card to a new state, that will render another carousel underneath the existing one. */

@@ -12,7 +12,7 @@ import Ratings from './ratings.jsx';
 import SimpleModal from './modal.jsx';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  riroot: {
     display: 'block',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -44,7 +44,7 @@ const OutfitTable = (props) => {
   const CardRender = () => (
     <>
       <h2>Like something??? Add it to your Outfit:</h2>
-      <div className={classes.root}>
+      <div className={classes.riroot}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {props.outfitList.map((tile, index) => (
             <GridListTile className={classes.card} key={index}>
@@ -69,7 +69,7 @@ const OutfitTable = (props) => {
                   </div>
              )}
                 classes={{
-                  root: classes.titleBar,
+                  riroot: classes.titleBar,
                   title: classes.title,
                 }}
               />

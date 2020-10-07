@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.light,
     fontSize: '150',
   },
-  root: {
+  riroot: {
     flexGrow: 1,
     boxShadow: 'none!important',
   },
@@ -103,7 +103,7 @@ export default function SimpleModal(props) {
   const body = (
     <div style={modalStyle} className={classes.paper}>
       <h1 className="ri-h1">Compare and Contrast like a b0ss:</h1>
-      <div className={classes.root}>
+      <div className={classes.riroot}>
         <Grid container spacing={1}>
           <Grid container item xs={12} spacing={3}>
             <FormRow productOne={props.selectedProductDetails.name} item="Item Name" productTwo={props.tile.name} />
