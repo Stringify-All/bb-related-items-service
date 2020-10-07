@@ -8,11 +8,12 @@ import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
+import Carousel from 'react-bootstrap/Carousel';
 import Ratings from './ratings.jsx';
 import SimpleModal from './modal.jsx';
 
 const useStyles = makeStyles((theme) => ({
-  riroot: {
+  root: {
     display: 'block',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -40,20 +41,26 @@ const useStyles = makeStyles((theme) => ({
 
 const OutfitTable = (props) => {
   const classes = useStyles();
-
+console.log('outfitList: ', props.outfitList);
   const CardRender = () => (
     <>
-      <h2>Like something??? Add it to your Outfit:</h2>
-      <div className={classes.riroot}>
+      <h2>Like something? Add it to your Outfit:</h2>
+      <div className={classes.root}>
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {props.outfitList.map((tile, index) => (
             <GridListTile className={classes.card} key={index}>
-              {/* {console.log('should be an object: ', props.relatedProducts[index].image)} */}
-              <img
+              <Carousel className="ri-carousel" interval={null}>
+                {tile.image.map((photo, i) => (
+                  <Carousel.Item className={classes.card}>
+                    <img src={photo} alt={`Img for ${tile.name}`} />
+                  </Carousel.Item>
+                ))}
+              </Carousel>
+              {/* <img
                 className={classes.cardImg}
-                src={props.outfitList[index].image}
+                src={props.outfitList[index].image[0]}
                 alt={`Img for: ${tile.name}`}
-              />
+              /> */}
               <GridListTileBar
                 title={(
                   <Ratings id={tile.id} />
@@ -69,7 +76,7 @@ const OutfitTable = (props) => {
                   </div>
              )}
                 classes={{
-                  riroot: classes.titleBar,
+                  root: classes.titleBar,
                   title: classes.title,
                 }}
               />

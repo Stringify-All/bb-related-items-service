@@ -21,7 +21,7 @@ const RelatedItems = () => {
   const outfitArray = [];
   const [outfitList, setOutfitList] = useState([
     {
-      image: 'https://lh3.googleusercontent.com/proxy/1XZ5LPpBHOS49SjsUog68KlMGKLpXpeybKvUNkdEtfS-n5kYhI2TI0IOxwLBGs9P80sdClUrz2GidmkMOwvglcS9ZOV8s2pItV2aX8-rzA116lYZbG11xuDwi-jszIPUWo41kWiot-DZcLQ3vEE',
+      image: ['https://lh3.googleusercontent.com/proxy/1XZ5LPpBHOS49SjsUog68KlMGKLpXpeybKvUNkdEtfS-n5kYhI2TI0IOxwLBGs9P80sdClUrz2GidmkMOwvglcS9ZOV8s2pItV2aX8-rzA116lYZbG11xuDwi-jszIPUWo41kWiot-DZcLQ3vEE'],
       name: 'Add Items Here!',
     },
   ]);

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable max-len */
@@ -57,7 +58,6 @@ const CardsTable = (props) => {
           if (props.relatedPhotos[i].results[0].photos[0].url) {
             for (let j = 0; j < props.relatedPhotos[i].results[0].photos.length; j += 1) {
               props.relatedProducts[i].image.push(props.relatedPhotos[i].results[0].photos[j].url);
-              console.log('Getting down to brass tax: ', props.relatedPhotos[i].results[0].photos[j].url);
             }
           } else {
             props.relatedProducts[i].image.push('https://www.warnersstellian.com/Content/images/product_image_not_available.png');
@@ -74,7 +74,6 @@ const CardsTable = (props) => {
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {props.relatedProducts.map((tile, index) => (
             <GridListTile className={classes.card} key={index}>
-              {console.log('heres the object:  ', tile.image)}
               <Carousel className="ri-carousel" interval={null}>
                 {tile.image.map((photo, i) => (
                   <Carousel.Item className={classes.card}>
@@ -96,7 +95,7 @@ const CardsTable = (props) => {
                   </div>
              )}
                 classes={{
-                  riroot: classes.titleBar,
+                  root: classes.titleBar,
                   title: classes.title,
                 }}
                 /* onClick, this button should add the clicked card to a new state, that will render another carousel underneath the existing one. */
@@ -106,6 +105,7 @@ const CardsTable = (props) => {
                     aria-label={`star ${tile.title}`}
                     onClick={function () {
                       if (props.outfitList.indexOf(tile) < 0) {
+                        console.log('heres the tile: ', tile);
                         props.setOutfitList((item) => item.concat(tile));
                       } else {
                         alert('You already got one dawg!');
