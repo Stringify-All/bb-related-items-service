@@ -102,7 +102,7 @@ export default function SimpleModal(props) {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      <h1 className="ri-h1">Compare and Contrast like a b0ss:</h1>
+      <h1 className="ri-h1" style={{ float: 'center' }}>Discern Disimilarities:</h1>
       <div className={classes.riroot}>
         <Grid container spacing={1}>
           <Grid container item xs={12} spacing={3}>
@@ -115,10 +115,10 @@ export default function SimpleModal(props) {
             <FormRow productOne={`$${props.selectedProductDetails.default_price}`} item="Price" productTwo={`$${props.tile.default_price}`} />
           </Grid>
           <Grid container item xs={12} spacing={3}>
-            <FormRow productOne={`Feature: ${featureOneSelect}, Material: ${valueOneSelect}`} item="Features" productTwo={`Feature: ${featureOnetile}, Material: ${valueOnetile}`} />
+            <FormRow productOne={`${featureOneSelect}: ${valueOneSelect}`} item="Main Feature" productTwo={`${featureOnetile}: ${valueOnetile}`} />
           </Grid>
           <Grid container item xs={12} spacing={3}>
-            <FormRow productOne={`Feature: ${featureTwoSelect}, Material: ${valueTwoSelect}`} item="Features" productTwo={`${featureTwotile}: ${valueTwotile}`} />
+            <FormRow productOne={`${featureTwoSelect}: ${valueTwoSelect}`} item="Another Feature" productTwo={`${featureTwotile}: ${valueTwotile}`} />
           </Grid>
         </Grid>
       </div>

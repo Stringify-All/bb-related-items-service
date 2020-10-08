@@ -13,7 +13,7 @@ import Ratings from './ratings.jsx';
 import SimpleModal from './modal.jsx';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  riroot: {
     display: 'block',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridList: {
     flexWrap: 'nowrap',
-    transform: 'translateZ(0)',
+    transform: 'translateZ(-1)',
     spacing: 4,
   },
   title: {
@@ -31,11 +31,22 @@ const useStyles = makeStyles((theme) => ({
   titleBar: {
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+    position: 'absolute',
+    zIndex: 2,
   },
   card: {
     maxWidth: '300px',
     boxShadow: '0 3px 5px 2px rgba(0,0,0,0.3)',
     margin: '20px',
+  },
+  carouselItem: {
+    display: 'flex',
+    width: '800px',
+    height: '400px',
+    maxHeight: '100%',
+    maxWidth: '100%',
+    margin: 'auto',
+    zIndex: 1,
   },
 }));
 
@@ -49,9 +60,9 @@ console.log('outfitList: ', props.outfitList);
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {props.outfitList.map((tile, index) => (
             <GridListTile className={classes.card} key={index}>
-              <Carousel className="ri-carousel" interval={null}>
+              <Carousel className={classes.carouselItem} interval={null}>
                 {tile.image.map((photo, i) => (
-                  <Carousel.Item className={classes.card}>
+                  <Carousel.Item>
                     <img src={photo} alt={`Img for ${tile.name}`} />
                   </Carousel.Item>
                 ))}

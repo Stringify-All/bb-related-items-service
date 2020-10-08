@@ -26,7 +26,7 @@ const RelatedItems = () => {
     },
   ]);
 
-  const currentId = 4;
+  const currentId = 5;
   // gets details for related products
   useEffect(() => {
     GetRelatedProducts(currentId)

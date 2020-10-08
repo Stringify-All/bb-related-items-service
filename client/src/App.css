@@ -45,16 +45,11 @@
 }
 
 img {
-  position: relative;
+  display: flex;
   max-width: 100%;
   max-height: 100%;
+  object-fit: cover;
+  z-index: -2;
 }
 
-.carousel {
-  width:800px;
-  height:400px;
-  max-height: 100%;
-  max-width: 100%;
-  margin: auto;
-  z-index: 1;
-}
+
