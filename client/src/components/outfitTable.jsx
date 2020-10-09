@@ -39,15 +39,15 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0 3px 5px 2px rgba(0,0,0,0.3)',
     margin: '20px',
   },
-  carouselItem: {
-    display: 'flex',
-    width: '800px',
-    height: '400px',
-    maxHeight: '100%',
-    maxWidth: '100%',
-    margin: 'auto',
-    zIndex: 1,
-  },
+  // carouselItem: {
+  //   display: 'flex',
+  //   width: '800px',
+  //   height: '400px',
+  //   maxHeight: 'auto',
+  //   maxWidth: '100%',
+  //   margin: 'auto',
+  //   zIndex: 1,
+  // },
 }));
 
 const OutfitTable = (props) => {
@@ -60,7 +60,7 @@ console.log('outfitList: ', props.outfitList);
         <GridList className={classes.gridList} cellHeight={200} cols={3}>
           {props.outfitList.map((tile, index) => (
             <GridListTile className={classes.card} key={index}>
-              <Carousel className={classes.carouselItem} interval={null}>
+              <Carousel interval={null}>
                 {tile.image.map((photo, i) => (
                   <Carousel.Item>
                     <img src={photo} alt={`Img for ${tile.name}`} />

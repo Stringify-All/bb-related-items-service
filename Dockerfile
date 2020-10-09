@@ -1,16 +1,16 @@
-FROM node:current-slim
+FROM node:8.10-alpine
 
-WORKDIR /usr/Desktop/FEC/bb-related-items-service
-COPY package.json .
+RUN mkdir -p /src/app
+
+WORKDIR /src/app
+
+COPY . /src/app
+
 RUN npm install
-RUN npm build
 
-WORKDIR /usr/Desktop/FEC/bb-related-items-service/server
-COPY package.json .
-RUN npm install
-# RUN npm start
+EXPOSE 9001
 
-EXPOSE 8080
-CMD [ "npm", "start", "build" ]
+CMD [ "npm", "start" ]
 
-COPY . .
+#sudo docker run -p 9001:9001 relateditems
+#sudo docker run -d -p 9003:3000 -v $(pwd):/src/app --name results_container results
