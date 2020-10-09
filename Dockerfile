@@ -12,5 +12,5 @@ EXPOSE 9001
 
 CMD [ "npm", "start" ]
 
-#sudo docker run -p 9001:9001 relateditems
-#sudo docker run -d -p 9003:3000 -v $(pwd):/src/app --name results_container results
+#sudo docker run -p 9001:3000 relateditems
+
