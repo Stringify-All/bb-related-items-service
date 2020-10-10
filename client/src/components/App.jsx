@@ -69,7 +69,7 @@ const RelatedItems = () => {
   return (
     <div>
       <body className="ri-body">
-        <p> Long Live the Scrumdog Millionaires </p>
+        <p> Long Live the Scrumdog Millionaires!!!!!!!</p>
         <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} outfitArray={outfitArray} setOutfitList={setOutfitList} outfitList={outfitList} />
         <OutfitTable outfitList={outfitList} />
         <p>
