@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
     position: 'absolute',
-    // zIndex: 2,
+    zIndex: 2,
   },
   card: {
     maxWidth: '300px',
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '100%',
     maxWidth: '100%',
     margin: 'auto',
-    // zIndex: 1,
+    zIndex: 1,
   },
 }));
 
