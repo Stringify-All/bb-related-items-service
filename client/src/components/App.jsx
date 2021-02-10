@@ -5,11 +5,15 @@ import axios from 'axios';
 import '../App.css';
 import CardsTable from './cardsTable.jsx';
 import OutfitTable from './outfitTable.jsx';
-import GetProductList from './api_requests/productsList.jsx';
 import GetRelatedProducts from './api_requests/getRelatedProducts.jsx';
 import GetRelatedProductDetails from './api_requests/getRelatedProductDetails.jsx';
 import GetPhotos from './api_requests/getPhotos.jsx';
+/*
+Main component, holding all state here. Most of the useState consts below keep track of data sent to each respective endpoint in the api_requests folder
 
+Basic flow: useEffect
+
+*/
 const RelatedItems = () => {
   const [count, setCount] = useState(0);
   // const [productInfo, setProductInfo] = useState([]);
@@ -26,15 +30,20 @@ const RelatedItems = () => {
     },
   ]);
 
-  const currentId = 5;
-  // gets details for related products
+  // hard coded product ID to get related items for
+  const currentId = 2;
+  // useEffect (lifecycle method) fires on mount
+
+  // returns an array of product IDs
   useEffect(() => {
     GetRelatedProducts(currentId)
       .then((data) => {
+        // records the product IDs in state
         setRelatedProducts(data);
         return data;
       })
       .then((data) => {
+        // mapping over the array of IDs and making a request for product details
         const promiseArr = data.map((id) => GetRelatedProductDetails(id));
         return Promise.all(promiseArr);
       }).then((data) => {
@@ -42,7 +51,7 @@ const RelatedItems = () => {
       });
   }, []);
 
-  // gets info for the selected item
+  // gets info for the selected item or hardcoded ID (used for modal comparision)
   useEffect(() => {
     GetRelatedProductDetails(currentId)
       .then((data) => {
