@@ -25,6 +25,7 @@ function Ratings(props) {
     const values = Object.values(obj);
     const reducer = (a, b) => a + b;
     const valSum = values.reduce(reducer);
+
     let total = 0;
     for (let i = 0; i < keys.length; i += 1) {
       total += Number(keys[i]) * values[i];

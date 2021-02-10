@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable import/extensions */
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import '../App.css';
 import CardsTable from './cardsTable.jsx';
 import OutfitTable from './outfitTable.jsx';
@@ -45,6 +44,7 @@ const RelatedItems = () => {
       .then((data) => {
         // mapping over the array of IDs and making a request for product details
         const promiseArr = data.map((id) => GetRelatedProductDetails(id));
+        // promise.all takes in an array of promises and resolves into a normal array once data is returned
         return Promise.all(promiseArr);
       }).then((data) => {
         setRelatedProductsInfo(data);
@@ -59,7 +59,7 @@ const RelatedItems = () => {
       });
   }, []);
 
-  // gets pictures for related products
+  // gets pictures for related products (could be combined with first useEffect)
   useEffect(() => {
     GetRelatedProducts(currentId)
       .then((data) => {
@@ -78,7 +78,7 @@ const RelatedItems = () => {
   return (
     <div>
       <body className="ri-body">
-        <h1>Long Live the Scrumdog Millionaires!</h1>
+        <h1>Related Items: </h1>
         <CardsTable relatedProducts={relatedProductsInfo} relatedPhotos={relatedProductsPhotos} selectedProductDetails={selectedProductDetails} outfitArray={outfitArray} setOutfitList={setOutfitList} outfitList={outfitList} />
         <OutfitTable outfitList={outfitList} />
         <p>

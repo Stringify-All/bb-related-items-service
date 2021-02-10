@@ -131,6 +131,7 @@ const CardsTable = (props) => {
   );
 
   if (props.relatedProducts !== []) {
+    // console.log('related products in render: ', props.relatedProducts);
     return CardRender();
   }
   return (
