@@ -30,7 +30,7 @@ const RelatedItems = () => {
   ]);
 
   // hard coded product ID to get related items for
-  const currentId = 2;
+  const currentId = 4;
   // useEffect (lifecycle method) fires on mount
 
   // returns an array of product IDs
